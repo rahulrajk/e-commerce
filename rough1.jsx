@@ -49,16 +49,13 @@ const App = () => {
     const handleCaptureCheckout = async (checkoutTokenId, newOrder) => {
         try {
 
-            console.log('newOrder',newOrder)
-            console.log('checkoutId',checkoutTokenId)
-            // const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+            console.log('newOrder',newOrder);
+            const incomingOrder = await commerce.checkout.capture(checkoutTokenId, newOrder);
+
+            setOrder(incomingOrder);
             refreshCart();
-            setTimeout(() => {
-                setOrder(newOrder);    
-            }, 3000);
-            
         } catch (error) {
-            console.log('error here ',error);
+            console.log('error here ');
             setErrorMessage(error.data.error.message);
         }
     }
